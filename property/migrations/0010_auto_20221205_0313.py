@@ -13,12 +13,12 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='flat',
-            name='owner_pure_phone',
+            name='pure_phone',
             field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region='CA', verbose_name='Нормализованный номер телефона'),
         ),
         migrations.AlterField(
             model_name='flat',
-            name='owners_phonenumber',
+            name='phonenumber',
             field=models.CharField(max_length=20, verbose_name='Номер владельца'),
         ),
     ]

@@ -3,14 +3,14 @@
 from django.db import migrations
 import phonenumbers
 
-def fill_owner_pure_phone(apps, schema_editor):
+def fill_pure_phone(apps, schema_editor):
     flats = apps.get_model('property', 'Flat')
     flats_set = flats.objects.all()
     if flats_set.exist():
         for flat in flats_set.iterator():
-            phone = phonenumbers.parse(flat.owners_phonenumber, 'RU')
+            phone = phonenumbers.parse(flat.phonenumber, 'RU')
             if phonenumbers.is_valid_number:
-                flat.owner_pure_phone = phonenumbers.format_number(phone, phonenumbers.PhoneNumberFormat.E164)
+                flat.pure_phone = phonenumbers.format_number(phone, phonenumbers.PhoneNumberFormat.E164)
 
             flat.save()
 
@@ -22,5 +22,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(fill_owner_pure_phone),
+        migrations.RunPython(fill_pure_phone),
     ]

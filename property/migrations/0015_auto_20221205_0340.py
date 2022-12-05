@@ -9,8 +9,8 @@ def fill_owner(apps, schema_editor):
     if flats_set.exist():
         for flat in flats_set.iterator():
             owners.objects.get_or_create(owner=flat.owner, defaults={
-                'owners_phonenumber': flat.owners_phonenumber,
-                'owner_pure_phone': flat.owner_pure_phone,
+                'phonenumber': flat.owners_phonenumber,
+                'pure_phone': flat.owner_pure_phone,
             })
 
 

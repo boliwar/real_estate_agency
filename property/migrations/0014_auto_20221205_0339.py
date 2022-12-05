@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='owner',
-            name='owner_flats',
+            name='flats',
             field=models.ManyToManyField(related_name='flat_owners', to='property.Flat', verbose_name='Квартиры в собственности'),
         ),
     ]

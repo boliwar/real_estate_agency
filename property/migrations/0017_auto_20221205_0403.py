@@ -9,7 +9,7 @@ def add_flats_owner(apps,  schema_editor):
     if flats_set.exist():
         for flat in flats_set.iterator():
             owner, created = owners.objects.get_or_create(owner=flat.owner)
-            owner.owner_flats.add(flat)
+            owner.flats.add(flat)
             owner.save()
 
 class Migration(migrations.Migration):
