@@ -59,12 +59,12 @@ class Flat(models.Model):
 
 
 class Complaint(models.Model):
-    complaint_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='complaints', verbose_name='Кто жаловался')
-    complaint_flat = models.ForeignKey(Flat, on_delete=models.PROTECT, related_name='discontent', verbose_name='Квартира, на которую жаловались')
-    complaint_text = models.TextField('Текст жалобы')
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='complaints', verbose_name='Кто жаловался')
+    flat = models.ForeignKey(Flat, on_delete=models.PROTECT, related_name='discontent', verbose_name='Квартира, на которую жаловались')
+    text = models.TextField('Текст жалобы')
 
     def __str__(self):
-        return f'{self.complaint_user.username}, {self.complaint_flat.address}'
+        return f'{self.user.username}, {self.flat.address}'
 
     class Meta:
         verbose_name = 'Жалоба'
@@ -72,9 +72,9 @@ class Complaint(models.Model):
 
 class Owner(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200, db_index=True)
-    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
-    owner_pure_phone = PhoneNumberField(region="CA", verbose_name='Нормализованный номер телефона', blank=True)
-    owner_flats = models.ManyToManyField(Flat,related_name='flat_owners', verbose_name='Квартиры в собственности')
+    phonenumber = models.CharField('Номер владельца', max_length=20)
+    pure_phone = PhoneNumberField(region="CA", verbose_name='Нормализованный номер телефона', blank=True)
+    flats = models.ManyToManyField(Flat,related_name='flat_owners', verbose_name='Квартиры в собственности')
 
     def __str__(self):
         return f'{self.owner}'

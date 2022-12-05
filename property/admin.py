@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Flat, Complaint, Owner
 
 class FlatInline(admin.TabularInline):
-    model = Owner.owner_flats.through
+    model = Owner.flats.through
     raw_id_fields = ('owner', 'flat')
 
 
@@ -17,10 +17,10 @@ class FlatAdmin(admin.ModelAdmin):
     inlines = [FlatInline]
 
 class ComplaintAdmin(admin.ModelAdmin):
-    raw_id_fields = ('complaint_user','complaint_flat')
+    raw_id_fields = ('user','flat')
 
 class OwnerAdmin(admin.ModelAdmin):
-    raw_id_fields = ('owner_flats',)
+    raw_id_fields = ('flats',)
     search_fields = ('owner',)
     inlines = [FlatInline]
 
