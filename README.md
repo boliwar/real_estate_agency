@@ -5,6 +5,7 @@
 ## Запуск
 
 - Скачайте код
+- Установите библиотеку _python-phonenumbers_ `pip install "django-phonenumber-field[phonenumbers]"`
 - Установите зависимости командой `pip install -r requirements.txt`
 - Создайте файл базы данных и сразу примените все миграции командой `python3 manage.py migrate`
 - Запустите сервер командой `python3 manage.py runserver`
