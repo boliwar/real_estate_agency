@@ -5,12 +5,14 @@ import phonenumbers
 
 def fill_owner_pure_phone(apps, schema_editor):
     flats = apps.get_model('property', 'Flat')
-    for flat in flats.objects.all():
-        phone = phonenumbers.parse(flat.owners_phonenumber, 'RU')
-        if phonenumbers.is_valid_number:
-            flat.owner_pure_phone = phonenumbers.format_number(phone, phonenumbers.PhoneNumberFormat.E164)
+    flats_set = flats.objects.all()
+    if flats_set.exist():
+        for flat in flats_set.iterator():
+            phone = phonenumbers.parse(flat.owners_phonenumber, 'RU')
+            if phonenumbers.is_valid_number:
+                flat.owner_pure_phone = phonenumbers.format_number(phone, phonenumbers.PhoneNumberFormat.E164)
 
-        flat.save()
+            flat.save()
 
 
 class Migration(migrations.Migration):
