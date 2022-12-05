@@ -6,7 +6,7 @@ def fill_owner(apps, schema_editor):
     flats = apps.get_model('property', 'Flat')
     owners = apps.get_model('property', 'Owner')
     flats_set = flats.objects.all()
-    if flats_set.exist():
+    if flats_set.exists():
         for flat in flats_set.iterator():
             owners.objects.get_or_create(owner=flat.owner, defaults={
                 'phonenumber': flat.owners_phonenumber,
